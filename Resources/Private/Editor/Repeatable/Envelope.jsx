@@ -11,7 +11,7 @@ function Envelope({ commit, editorId, editorOptions, id, ...props }) {
             Object.keys(hook).map((h) => {
                 const hookPromise = hooksRegistry.get(h);
                 hookPromise(event, hook[h]).then((json) => {
-                    const value = omit(json, ["__type"]);
+                    const value = (({ __type, ...rest }) => rest)(json);
                     commit(id, property, value);
                 });
             });
