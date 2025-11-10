@@ -10,16 +10,16 @@
   "devDependencies": {
     "@formkit/auto-animate": "^0.9.0",
     "@neos-project/neos-ui-extensibility": "~8.3.16",
-    "@neos-project/positional-array-sorter": "^8.3.16",
+    "@neos-project/positional-array-sorter": "^8.4.0",
     "array-move": "^4.0.0",
     "carbon-neos-loadinganimation": "^1.2.0",
     "clsx": "^2.1.1",
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.27.0",
     "esbuild-plugin-lightningcss-modules": "^0.1.2",
     "nanoid": "^5.1.6",
     "prettier": "^3.6.2",
     "prop-types": "^15.8.1",
     "react-sortable-hoc": "^2.0.0"
   },
-  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
+  "packageManager": "pnpm@10.21.0+sha512.da3337267e400fdd3d479a6c68079ac6db01d8ca4f67572083e722775a796788a7a9956613749e000fac20d424b594f7a791a5f4e2e13581c5ef947f26968a40"
 }
