@@ -269,9 +269,10 @@ function Repeatable({
 
     function createElement(idx) {
         const isPredefined = !!options.predefinedProperties && options.predefinedProperties[idx];
-        const { controls, sortBy, properties } = options;
+        const { controls, sortBy, properties, allowRemovePredefinedProperties } = options;
 
-        const hasRemove = !isPredefined && controls.remove && allowRemove;
+        const hasRemove = controls.remove && allowRemove ? !isPredefined || allowRemovePredefinedProperties : false;
+
         const hasMove = !isPredefined && controls.move && currentValue.length > 1;
         const hasTwoButtons = hasRemove && hasMove;
         const hasOneButton = hasRemove || hasMove;

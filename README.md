@@ -48,6 +48,8 @@ Create property with type `reapeatable`.
               - property: field0
                 direction: desc # asc or desc. If not set, it will be asc
               - property: field1
+            # Allow to remove entries with predefined properties. Defaults to false
+            allowRemovePredefinedProperties: true
             predefinedProperties:
               - label: Group label
                 properties:
