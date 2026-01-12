@@ -12,8 +12,8 @@ importers:
         specifier: ^0.9.0
         version: 0.9.0
       '@neos-project/neos-ui-extensibility':
-        specifier: ~8.3.16
-        version: 8.3.16
+        specifier: ^8.4.0
+        version: 8.4.0
       '@neos-project/positional-array-sorter':
         specifier: ^8.4.0
         version: 8.4.0
@@ -22,7 +22,7 @@ importers:
         version: 4.0.0
       carbon-neos-loadinganimation:
         specifier: ^1.2.0
-        version: 1.2.0(@neos-project/neos-ui-extensibility@8.3.16)
+        version: 1.2.0(@neos-project/neos-ui-extensibility@8.4.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -47,8 +47,8 @@ importers:
 
 packages:
 
-  '@babel/runtime@7.28.4':
-    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
+  '@babel/runtime@7.28.6':
+    resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
     engines: {node: '>=6.9.0'}
 
   '@esbuild/aix-ppc64@0.27.2':
@@ -210,11 +210,8 @@ packages:
   '@formkit/auto-animate@0.9.0':
     resolution: {integrity: sha512-VhP4zEAacXS3dfTpJpJ88QdLqMTcabMg0jwpOSxZ/VzfQVfl3GkZSCZThhGC5uhq/TxPHPzW0dzr4H9Bb1OgKA==}
 
-  '@neos-project/neos-ui-extensibility@8.3.16':
-    resolution: {integrity: sha512-97W+ylpfdxhg94z64xwvpSZlAkpqiMiYOH2Bw2g6dVo0e8dkhCFf7RrDlr/JAPJR7LvZoxqgiyCWi44fABcKKA==}
-
-  '@neos-project/positional-array-sorter@8.3.16':
-    resolution: {integrity: sha512-/V9dAccVMK6818I4AOnVNDawviCv1xPyZM+IywW3UKgC+vPUfKUpE+6419E8fqPpqiWXSfY0BE88SkGin+bkMw==}
+  '@neos-project/neos-ui-extensibility@8.4.0':
+    resolution: {integrity: sha512-YAx3wM2J/XFQvA0WstublawIC5dfXlMJ+LhmW6BZyUCO6Fc5Wbm/BIrt4sdwyoU8fOE01xnHVCeuozm1KLASPQ==}
 
   '@neos-project/positional-array-sorter@8.4.0':
     resolution: {integrity: sha512-oT4uRnL9nPnmzmCVY95DziqwG8zy2+Wqp/i/09AgD+GW18ddcL7PT3RYF1ZU+88te3maEVonlOg23UOBjO5yDg==}
@@ -367,7 +364,7 @@ packages:
 
 snapshots:
 
-  '@babel/runtime@7.28.4': {}
+  '@babel/runtime@7.28.6': {}
 
   '@esbuild/aix-ppc64@0.27.2':
     optional: true
@@ -449,19 +446,17 @@ snapshots:
 
   '@formkit/auto-animate@0.9.0': {}
 
-  '@neos-project/neos-ui-extensibility@8.3.16':
+  '@neos-project/neos-ui-extensibility@8.4.0':
     dependencies:
-      '@neos-project/positional-array-sorter': 8.3.16
-
-  '@neos-project/positional-array-sorter@8.3.16': {}
+      '@neos-project/positional-array-sorter': 8.4.0
 
   '@neos-project/positional-array-sorter@8.4.0': {}
 
   array-move@4.0.0: {}
 
-  carbon-neos-loadinganimation@1.2.0(@neos-project/neos-ui-extensibility@8.3.16):
+  carbon-neos-loadinganimation@1.2.0(@neos-project/neos-ui-extensibility@8.4.0):
     dependencies:
-      '@neos-project/neos-ui-extensibility': 8.3.16
+      '@neos-project/neos-ui-extensibility': 8.4.0
 
   clsx@2.1.1: {}
 
@@ -583,7 +578,7 @@ snapshots:
 
   react-sortable-hoc@2.0.0(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 17.0.2
