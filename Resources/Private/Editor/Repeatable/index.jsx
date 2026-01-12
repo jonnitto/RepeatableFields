@@ -372,7 +372,7 @@ function Repeatable({
         if (image) {
             image = ItemEvalRecursive(image, currentValue[idx], props.node, props.parentNode, props.documentNode);
         }
-        return <Preview text={text} image={image} />;
+        return <Preview text={i18nRegistry.translate(text)} image={image} />;
     }
 
     function getProperty(property, idx) {
