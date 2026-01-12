@@ -223,6 +223,10 @@ function Repeatable({
     }
 
     function handleAdd() {
+        setCollapsed({
+            ...collapsed,
+            [currentValue.length]: false,
+        });
         handleValueChange([...currentValue, emptyGroup]);
     }
 
@@ -231,13 +235,12 @@ function Repeatable({
         handleValueChange(value);
     }
 
-    handleCollapse = (idx) => {
-        const value = !collapsed[idx];
+    function handleCollapse(idx, currentValue) {
         setCollapsed({
             ...collapsed,
-            [idx]: value,
+            [idx]: !currentValue,
         });
-    };
+    }
 
     function commitChange(idx, property, event) {
         handleValueChange(set(property, event, currentValue));
@@ -300,23 +303,22 @@ function Repeatable({
         }
 
         const hasCollapse = !!controls.collapse;
-        if (hasCollapse && options.collapsed && typeof collapsed[idx] !== "boolean") {
-            setCollapsed({
-                ...collapsed,
-                [idx]: true,
-            });
-        }
+        const isCollapsed = hasCollapse
+            ? typeof collapsed[idx] === "boolean"
+                ? collapsed[idx]
+                : !!options?.collapsed
+            : false;
 
         return (
             <div className={style.wrapper}>
                 {Boolean(hasOneButton || hasCollapse) && (
                     <div class={style.buttons}>
-                        {getLabel(idx)}
+                        {getPreview(idx)}
                         {hasMove && <DragHandle />}
                         {hasCollapse && (
                             <IconButton
-                                onClick={() => handleCollapse(idx)}
-                                icon={collapsed[idx] ? "chevron-down" : "chevron-up"}
+                                onClick={() => handleCollapse(idx, isCollapsed)}
+                                icon={isCollapsed ? "chevron-down" : "chevron-up"}
                             />
                         )}
                         {hasRemove && (
@@ -324,7 +326,7 @@ function Repeatable({
                         )}
                     </div>
                 )}
-                {!collapsed[idx] && getProperties(idx)}
+                {!isCollapsed && getProperties(idx)}
             </div>
         );
     }
@@ -358,9 +360,9 @@ function Repeatable({
         return checkIfValueIsSet(value) ? value : fallback;
     }
 
-    function getLabel(idx) {
-        let text = options?.label?.text;
-        let image = options?.label?.image;
+    function getPreview(idx) {
+        let text = options?.preview?.text;
+        let image = options?.preview?.image;
         if (!text && !image) {
             return null;
         }
