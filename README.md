@@ -68,6 +68,10 @@ Create property with type `reapeatable`.
 #                ...
             # collapse view on load. controls.collapse must be true. defaults to false
             collapsed: true
+            # Set preview
+            preview:
+              text:  'ItemEval: item.field0'
+              image: 'ItemEval: item.field1'
             properties:
               field0:
                 # The order of the fields can be altered by setting position. It is the same logic as @position in Fusion

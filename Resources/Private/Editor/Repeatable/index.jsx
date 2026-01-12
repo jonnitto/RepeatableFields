@@ -11,6 +11,7 @@ import positionalArraySorter from "@neos-project/positional-array-sorter";
 import Loading from "carbon-neos-loadinganimation/LoadingWithStyles";
 import { Sortable, DragHandle } from "./Sortable";
 import Envelope from "./Envelope";
+import Preview from "./Preview";
 import {
     deepMerge,
     set,
@@ -310,6 +311,7 @@ function Repeatable({
             <div className={style.wrapper}>
                 {Boolean(hasOneButton || hasCollapse) && (
                     <div class={style.buttons}>
+                        {getLabel(idx)}
                         {hasMove && <DragHandle />}
                         {hasCollapse && (
                             <IconButton
@@ -354,6 +356,21 @@ function Repeatable({
 
     function returnValueIfSet(value, fallback = "") {
         return checkIfValueIsSet(value) ? value : fallback;
+    }
+
+    function getLabel(idx) {
+        let text = options?.label?.text;
+        let image = options?.label?.image;
+        if (!text && !image) {
+            return null;
+        }
+        if (text) {
+            text = ItemEvalRecursive(text, currentValue[idx], props.node, props.parentNode, props.documentNode);
+        }
+        if (image) {
+            image = ItemEvalRecursive(image, currentValue[idx], props.node, props.parentNode, props.documentNode);
+        }
+        return <Preview text={text} image={image} />;
     }
 
     function getProperty(property, idx) {
