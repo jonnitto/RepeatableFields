@@ -299,6 +299,12 @@ function Repeatable({
         }
 
         const hasCollapse = !!controls.collapse;
+        if (hasCollapse && options.collapsed && typeof collapsed[idx] !== "boolean") {
+            setCollapsed({
+                ...collapsed,
+                [idx]: true,
+            });
+        }
 
         return (
             <div className={style.wrapper}>
@@ -496,6 +502,11 @@ Repeatable.propTypes = {
         ),
         max: PropTypes.number,
         min: PropTypes.number,
+        collapsed: PropTypes.bool,
+        label: PropTypes.shape({
+            label: PropTypes.string,
+            image: PropTypes.string,
+        }),
         controls: PropTypes.shape({
             move: PropTypes.bool,
             remove: PropTypes.bool,

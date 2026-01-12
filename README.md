@@ -66,6 +66,8 @@ Create property with type `reapeatable`.
                   field0:
                     defaultValue: defalut value for index 2 field0
 #                ...
+            # collapse view on load. controls.collapse must be true. defaults to false
+            collapsed: true
             properties:
               field0:
                 # The order of the fields can be altered by setting position. It is the same logic as @position in Fusion
