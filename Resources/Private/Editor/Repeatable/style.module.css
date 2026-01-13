@@ -48,6 +48,10 @@
     }
 }
 
+.sortableHelper {
+    z-index: 9999;
+}
+
 .label.label {
     display: block;
     line-height: var(--spacing-GoldenUnit);
