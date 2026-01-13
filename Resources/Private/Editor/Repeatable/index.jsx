@@ -61,7 +61,7 @@ function Repeatable({
 
     // We use this hack to prevent the editor from re-rendering all the time, even if the options are the same.
     const returnCurrentValueAsJSON = () => JSON.stringify(currentValue);
-    const [currentValueAsJSON, setCurrentValueAsJSON] = useState([]);
+    const [currentValueAsJSON, setCurrentValueAsJSON] = useState("");
 
     useEffect(() => {
         setLoading(true);
@@ -90,6 +90,14 @@ function Repeatable({
             return () => clearTimeout(timeout);
         }
     }, [currentValue]);
+
+    useEffect(() => {
+        const dataAsJSON = returnCurrentValueAsJSON();
+        if (JSON.stringify(value) === dataAsJSON) {
+            return;
+        }
+        setCurrentValue(value);
+    }, [value]);
 
     useEffect(() => {
         if (!options || ClientEvalIsNotFinished(options)) {
