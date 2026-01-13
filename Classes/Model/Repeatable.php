@@ -113,6 +113,15 @@ class Repeatable implements \Iterator, \JsonSerializable, \Countable, \ArrayAcce
     }
 
     /**
+     * @param array<int,array<string,mixed>> $source
+     * @return void
+     */
+    public function setSource(array $source): void
+    {
+        $this->source = $source;
+    }
+
+    /**
      * @return array
      */
     private function getSource(): array

@@ -48,6 +48,8 @@ Create property with type `reapeatable`.
               - property: field0
                 direction: desc # asc or desc. If not set, it will be asc
               - property: field1
+            # Allow to remove entries with predefined properties. Defaults to false
+            allowRemovePredefinedProperties: true
             predefinedProperties:
               - label: Group label
                 properties:
@@ -64,6 +66,12 @@ Create property with type `reapeatable`.
                   field0:
                     defaultValue: defalut value for index 2 field0
 #                ...
+            # collapse view on load. controls.collapse must be true. defaults to false
+            collapsed: true
+            # Set preview
+            preview:
+              text:  'ItemEval: item.field0'
+              image: 'ItemEval: item.field1'
             properties:
               field0:
                 # The order of the fields can be altered by setting position. It is the same logic as @position in Fusion

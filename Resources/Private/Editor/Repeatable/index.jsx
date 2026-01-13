@@ -11,6 +11,7 @@ import positionalArraySorter from "@neos-project/positional-array-sorter";
 import Loading from "carbon-neos-loadinganimation/LoadingWithStyles";
 import { Sortable, DragHandle } from "./Sortable";
 import Envelope from "./Envelope";
+import Preview from "./Preview";
 import {
     deepMerge,
     set,
@@ -222,6 +223,10 @@ function Repeatable({
     }
 
     function handleAdd() {
+        setCollapsed({
+            ...collapsed,
+            [currentValue.length]: false,
+        });
         handleValueChange([...currentValue, emptyGroup]);
     }
 
@@ -230,13 +235,12 @@ function Repeatable({
         handleValueChange(value);
     }
 
-    handleCollapse = (idx) => {
-        const value = !collapsed[idx];
+    function handleCollapse(idx, currentValue) {
         setCollapsed({
             ...collapsed,
-            [idx]: value,
+            [idx]: !currentValue,
         });
-    };
+    }
 
     function commitChange(idx, property, event) {
         handleValueChange(set(property, event, currentValue));
@@ -269,9 +273,10 @@ function Repeatable({
 
     function createElement(idx) {
         const isPredefined = !!options.predefinedProperties && options.predefinedProperties[idx];
-        const { controls, sortBy, properties } = options;
+        const { controls, sortBy, properties, allowRemovePredefinedProperties } = options;
 
-        const hasRemove = !isPredefined && controls.remove && allowRemove;
+        const hasRemove = controls.remove && allowRemove ? !isPredefined || allowRemovePredefinedProperties : false;
+
         const hasMove = !isPredefined && controls.move && currentValue.length > 1;
         const hasTwoButtons = hasRemove && hasMove;
         const hasOneButton = hasRemove || hasMove;
@@ -298,16 +303,22 @@ function Repeatable({
         }
 
         const hasCollapse = !!controls.collapse;
+        const isCollapsed = hasCollapse
+            ? typeof collapsed[idx] === "boolean"
+                ? collapsed[idx]
+                : !!options?.collapsed
+            : false;
 
         return (
             <div className={style.wrapper}>
                 {Boolean(hasOneButton || hasCollapse) && (
                     <div class={style.buttons}>
+                        {getPreview(idx)}
                         {hasMove && <DragHandle />}
                         {hasCollapse && (
                             <IconButton
-                                onClick={() => handleCollapse(idx)}
-                                icon={collapsed[idx] ? "chevron-down" : "chevron-up"}
+                                onClick={() => handleCollapse(idx, isCollapsed)}
+                                icon={isCollapsed ? "chevron-down" : "chevron-up"}
                             />
                         )}
                         {hasRemove && (
@@ -315,7 +326,7 @@ function Repeatable({
                         )}
                     </div>
                 )}
-                {!collapsed[idx] && getProperties(idx)}
+                {!isCollapsed && getProperties(idx)}
             </div>
         );
     }
@@ -347,6 +358,21 @@ function Repeatable({
 
     function returnValueIfSet(value, fallback = "") {
         return checkIfValueIsSet(value) ? value : fallback;
+    }
+
+    function getPreview(idx) {
+        let text = options?.preview?.text;
+        let image = options?.preview?.image;
+        if (!text && !image) {
+            return null;
+        }
+        if (text) {
+            text = ItemEvalRecursive(text, currentValue[idx], props.node, props.parentNode, props.documentNode);
+        }
+        if (image) {
+            image = ItemEvalRecursive(image, currentValue[idx], props.node, props.parentNode, props.documentNode);
+        }
+        return <Preview text={i18nRegistry.translate(text)} image={image} />;
     }
 
     function getProperty(property, idx) {
@@ -495,6 +521,11 @@ Repeatable.propTypes = {
         ),
         max: PropTypes.number,
         min: PropTypes.number,
+        collapsed: PropTypes.bool,
+        label: PropTypes.shape({
+            label: PropTypes.string,
+            image: PropTypes.string,
+        }),
         controls: PropTypes.shape({
             move: PropTypes.bool,
             remove: PropTypes.bool,
