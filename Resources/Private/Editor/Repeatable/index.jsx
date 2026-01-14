@@ -421,7 +421,7 @@ function Repeatable({
                 value={currentValue}
                 KEY_PROPERTY={KEY_PROPERTY}
             />
-            {Boolean(options?.controls?.add && allowAdd) && (
+            {options?.controls?.add && allowAdd && (
                 <>
                     <Button onClick={handleAdd} id={id}>
                         {i18nRegistry.translate(buttonAddLabel)}
