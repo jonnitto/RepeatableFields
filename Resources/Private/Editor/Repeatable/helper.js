@@ -192,7 +192,7 @@ function recursivelySetValueInObject(object, value, path) {
 }
 
 export function getInitialValue({ emptyGroup, value, KEY_PROPERTY, options }) {
-    // add an fixed index to the value
+    // add a fixed index to the value
     let result = addKeyToValue(value, KEY_PROPERTY);
     const { min, max } = options;
 
