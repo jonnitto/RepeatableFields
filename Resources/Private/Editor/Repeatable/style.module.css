@@ -63,7 +63,9 @@
     width: 100%;
 }
 
-.backgroundColor {
+.backgroundColor.backgroundColor {
+    background-color: var(--bg);
+    color: contrast-color(var(--bg));
     padding-inline: var(--spacing-Full);
 }
 

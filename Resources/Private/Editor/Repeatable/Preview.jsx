@@ -64,7 +64,7 @@ export default function Preview({ text, image, backgroundColor }) {
         return (
             <span
                 className={clsx(style.label, cleanBackgroundColor && style.backgroundColor)}
-                style={{ backgroundColor: cleanBackgroundColor }}
+                style={{ "--bg": cleanBackgroundColor }}
             >
                 {cleanText}
             </span>
